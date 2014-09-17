@@ -1,0 +1,21 @@
+<table class="table table-striped">
+		<thead>
+	    	<tr>
+	      		<th>Number</th>
+	      		<th>Name</th>
+	      		<th>Action</th>
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @stations.each do |station| %>
+				<tr>		
+					<td><%= station['GuideNumber'] %></td>
+					<td><%= station['GuideName'] %></td>
+					<td>
+						<%= link_to "Watch", {:controller => :watch, :action => :wait, :station => station['GuideNumber']}  %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+			
