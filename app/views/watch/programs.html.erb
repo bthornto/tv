@@ -1,0 +1,20 @@
+<table class="table table-striped">
+		<thead>
+	    	<tr>
+	      		<th>Station</th>
+	      		<th>Number</th>
+	      		<th>Title</th>
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @programs.each do |program|  %>
+				<tr>		
+					<td><%= program['SourceLongName'] %></td>
+					<td><%= program['Channel'] %></td>
+					<td>
+						<%= link_to program['Title'], {:controller => :watch, :action => :wait, :station => program['Channel']}  %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>

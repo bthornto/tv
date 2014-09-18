@@ -41,6 +41,11 @@ class WatchController < ApplicationController
 	end
 
 	def watch
-	
+	end
+
+	def programs
+		@@programs = curl("http://api.rovicorp.com/TVlistings/v9/listings/linearschedule/20555/info?locale=en-US&duration=0&inprogress=true&apikey=zu2jfacvgek8wfeb4mgxzhne")
+		pp @@programs
+		@programs = @@programs['LinearScheduleResult']['Schedule']['Airings'].sort_by { |k| k["Channel"].to_f }
 	end
 end

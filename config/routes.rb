@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'watch/index'
   get 'watch/watch'
   get 'watch/wait'
+  get 'watch/programs'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
