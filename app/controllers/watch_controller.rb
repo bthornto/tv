@@ -36,7 +36,7 @@ class WatchController < ApplicationController
 			end
 		end
   		pid = fork do
-  			exec "ffmpeg -i http://192.168.1.165:5004/auto/v#{params[:station]}?transcode=internet480 -async 1 -ss 00:00:05 -acodec aac -strict -2  -b:v 3000k -ac 2 -vcodec copy -preset superfast  -tune zerolatency  -threads 2 -s 1280x720 -flags -global_header -fflags +genpts -map 0:0 -map 0:1 -hls_time 2 -hls_wrap 40 public/test.m3u8 > /dev/null"
+  			exec "ffmpeg -i http://192.168.1.165:5004/auto/v#{params[:station]}?transcode=internet240 -async 1 -ss 00:00:05 -acodec aac -strict -2  -b:a 64k -ac 2 -vcodec copy -preset superfast  -tune zerolatency  -threads 2  -flags -global_header -fflags +genpts -map 0:0 -map 0:1 -hls_time 2 -hls_wrap 40 public/test.m3u8 > /dev/null"
 		end
 	end
 
