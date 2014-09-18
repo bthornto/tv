@@ -36,7 +36,7 @@ class WatchController < ApplicationController
 			end
 		end
   		pid = fork do
-  			exec "ffmpeg -i http://192.168.1.165:5004/auto/v#{params[:station]}?transcode=internet240 -async 1 -ss 00:00:05 -acodec aac -strict -2  -b:a 64k -ac 2 -vcodec copy -preset superfast  -tune zerolatency  -threads 2  -flags -global_header -fflags +genpts -map 0:0 -map 0:1 -hls_time 2 -hls_wrap 40 public/test.m3u8 > /dev/null"
+  			exec "/home/brad/bin/ffmpeg -v 0 -i http://192.168.1.165:5004/auto/v#{params[:station]}?transcode=internet240 -async 1 -ss 00:00:05 -acodec aac -strict -2  -b:a 64k -ac 2 -vcodec copy -preset superfast  -tune zerolatency  -threads 2  -flags -global_header -fflags +genpts -map 0:0 -map 0:1 -hls_time 2 -hls_wrap 40 public/test.m3u8 < /dev/null &"
 		end
 	end
 
@@ -45,7 +45,6 @@ class WatchController < ApplicationController
 
 	def programs
 		@@programs = curl("http://api.rovicorp.com/TVlistings/v9/listings/linearschedule/20555/info?locale=en-US&duration=0&inprogress=true&apikey=zu2jfacvgek8wfeb4mgxzhne")
-		pp @@programs
 		@programs = @@programs['LinearScheduleResult']['Schedule']['Airings'].sort_by { |k| k["Channel"].to_f }
 	end
 end
